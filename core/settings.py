@@ -1,29 +1,34 @@
 from pathlib import Path
+from datetime import timedelta
+from decouple import config
+import datetime
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 SECRET_KEY = 'django-insecure-t6v+i#j5vrv8u*q(-a$k$u0l5d9$3n^sb*!^*9o6=o)l^l)1*g'
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mirbeko.pythonanywhere.com']
 
 
 INSTALLED_APPS = [
+    'django.contrib.staticfiles',   # +++
+    'whitenoise.runserver_nostatic',    # +++
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
 
     # 3 th packages
     'rest_framework',
     # 'rest_framework_simplejwt.token_blacklist',
     # 'django_filters',
-    # 'django_rest_passwordreset', 
+    # 'django_rest_passwordreset',
     'drf_yasg',
 
     # apps
@@ -34,6 +39,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",    # +++
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -87,7 +93,20 @@ USE_I18N = True
 USE_TZ = True
 
 
-STATIC_URL = 'static/'
-
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+if DEBUG:
+    from .dev_settings import *
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')      # ++++
+STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"  # ++++
+
