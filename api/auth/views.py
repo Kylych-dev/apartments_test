@@ -23,6 +23,17 @@ class RegisterView(viewsets.ViewSet):
         operation_summary="Создание нового пользователя",
         operation_id="register_user",
         tags=["Authentication"],
+        request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            required=['email', 'password'],
+            properties={
+                'email': openapi.Schema(type=openapi.TYPE_STRING, format='email', description='Email пользователя'),
+                'role': openapi.Schema(type=openapi.TYPE_STRING, format='role', description='role пользователя'),
+                'password': openapi.Schema(type=openapi.TYPE_STRING, format='password', description='Пароль пользователя'),
+                'password2': openapi.Schema(type=openapi.TYPE_STRING, format='password2', description='Пароль пользователя')
+
+            },
+        ),
         responses={
             201: openapi.Response(description="OK - Регистрация прошла успешно."),
             400: openapi.Response(description="Bad Request - Неверный запрос."),
@@ -76,6 +87,14 @@ class UserAuthenticationView(viewsets.ViewSet):
         operation_summary="Авторизация пользователя для получения токена",
         operation_id="login_user",
         tags=["Authentication"],
+        request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            required=['email', 'password'],
+            properties={
+                'email': openapi.Schema(type=openapi.TYPE_STRING, format='email', description='Email пользователя'),
+                'password': openapi.Schema(type=openapi.TYPE_STRING, format='password', description='Пароль пользователя')
+            },
+        ),
         responses={
             200: openapi.Response(description="OK - Авторизация пользователя прошла успешно."),
             400: openapi.Response(description="Bad Request - Неверный запрос."),
