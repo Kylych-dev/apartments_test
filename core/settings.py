@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-t6v+i#j5vrv8u*q(-a$k$u0l5d9$3n^sb*!^*9o6=o)l^l)1*g'
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['mirbeko.pythonanywhere.com']
 
