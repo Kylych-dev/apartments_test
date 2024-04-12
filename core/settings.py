@@ -26,8 +26,8 @@ INSTALLED_APPS = [
 
     # 3 th packages
     'rest_framework',
-    # 'rest_framework_simplejwt.token_blacklist',
-    # 'django_filters',
+    'rest_framework_simplejwt.token_blacklist',
+    'django_filters',
     # 'django_rest_passwordreset', 
     'drf_yasg',
 
@@ -110,3 +110,22 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')      # ++++
 STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"  # ++++
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+}
+
+SIMPLE_JWT = {
+     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+     'ROTATE_REFRESH_TOKENS': True,
+     'BLACKLIST_AFTER_ROTATION': True
+}
+
+APPEND_SLASH = True
