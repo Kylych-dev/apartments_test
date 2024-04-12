@@ -9,9 +9,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-t6v+i#j5vrv8u*q(-a$k$u0l5d9$3n^sb*!^*9o6=o)l^l)1*g'
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mirbeko.pythonanywhere.com']
 
 
 INSTALLED_APPS = [
@@ -26,6 +26,9 @@ INSTALLED_APPS = [
 
     # 3 th packages
     'rest_framework',
+    # 'rest_framework_simplejwt.token_blacklist',
+    # 'django_filters',
+    # 'django_rest_passwordreset',
     'rest_framework_simplejwt.token_blacklist',
     'django_filters',
     # 'django_rest_passwordreset', 
@@ -101,7 +104,7 @@ if DEBUG:
     from .dev_settings import *
 
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True  
+CORS_ALLOW_CREDENTIALS = True
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
