@@ -27,10 +27,10 @@ INSTALLED_APPS = [
     # 3 th packages
     'rest_framework',
     # 'rest_framework_simplejwt.token_blacklist',
-    # 'django_filters',
+    'django_filters',
     # 'django_rest_passwordreset',
     'rest_framework_simplejwt.token_blacklist',
-    'django_filters',
+    # 'django_filters',
     # 'django_rest_passwordreset', 
     'drf_yasg',
 
