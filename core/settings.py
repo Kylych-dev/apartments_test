@@ -11,7 +11,8 @@ SECRET_KEY = 'django-insecure-t6v+i#j5vrv8u*q(-a$k$u0l5d9$3n^sb*!^*9o6=o)l^l)1*g
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['mirbeko.pythonanywhere.com']
+# ALLOWED_HOSTS = ['mirbeko.pythonanywhere.com']
+ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
@@ -25,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
 
     # 3 th packages
-    'rest_framework',
+    # 'rest_framework', # >>>>>>>>>>>>>>>>>>>>>>>> for custom middleware
     # 'rest_framework_simplejwt.token_blacklist',
     'django_filters',
     # 'django_rest_passwordreset',
@@ -36,7 +37,8 @@ INSTALLED_APPS = [
 
     # apps
     'apps.accounts',
-    'apps.appartments'
+    'apps.appartments',
+    'apps.middleware_mode'
 
 ]
 
@@ -49,6 +51,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # middlware_mode
+    'apps.middleware_mode.middleware.MainModelMiddleware'
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -132,3 +137,8 @@ SIMPLE_JWT = {
 }
 
 APPEND_SLASH = True
+
+
+# MAINTENANCE_MODE = False            # MiddleWare Mode ++++
+
+MAINTENANCE_MODE = True            # MiddleWare Mode ++++
