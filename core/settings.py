@@ -139,6 +139,6 @@ SIMPLE_JWT = {
 APPEND_SLASH = True
 
 
-# MAINTENANCE_MODE = False            # MiddleWare Mode ++++
+MAINTENANCE_MODE = False            # MiddleWare Mode ++++
 
-MAINTENANCE_MODE = True            # MiddleWare Mode ++++
+# MAINTENANCE_MODE = True            # MiddleWare Mode ++++
