@@ -2,6 +2,8 @@ import logging
 from django.conf import settings
 from django.http import HttpResponse
 
+from django.utils.deprecation import MiddlewareMixin
+
 logger = logging.getLogger(__name__)
 handler = logging.StreamHandler()
 handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(message)s"))
@@ -9,7 +11,7 @@ logger.addHandler(handler)
 logger.setLevel(logging.INFO)
 
 
-class MainModelMiddleware:
+class MainModelMiddleware():
     def __init__(self, get_response):
         self.get_response = get_response
 
@@ -21,7 +23,13 @@ class MainModelMiddleware:
             return HttpResponse('Applicaiton is in maintenance mode. Please try again later.')
 
         response = self.get_response(request)
+        print('qwerty qwerty qwerty')
 
+        return response
+    
+    def process_template_response(self, request, response):
+        print('def process_template_response')
+        # logger.info('Processing template response')
         return response
     
 
@@ -45,4 +53,9 @@ class MainModelMiddleware:
 
         return response
     
-    '''
+    def process_template_response(self, request, response):
+        print('def process_template_response')
+        # logger.info('Processing template response')
+        return response
+    
+'''
